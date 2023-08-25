@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-import pandas
+import pandas as pd
+import openpyxl
 
 from alpaca.data.timeframe import TimeFrame
 from alpaca.data.requests import StockBarsRequest
@@ -98,5 +99,9 @@ def calculate_bollinger_profit(holdings, closing_data):
     print("Final Holdings in Account: ", amount_current)
     print("------------------")
     print("Percent Increase/Decrease in Holdings: ", ((amount_current / holdings) * 100) , "%")
+
+    #convert the collections dictionary => pandas dataframe => excel sheet
+    data_df = pd.DataFrame.from_dict(collection)
+    data_df.to_excel("results.xlsx", index=True)
 
 calculate_bollinger_profit(1000000, close_df)
