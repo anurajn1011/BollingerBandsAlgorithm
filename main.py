@@ -18,7 +18,7 @@ api_secret = os.getenv("API_SECRET")
 trading_client = StockHistoricalDataClient(api_key, api_secret)
 
 request_params = StockBarsRequest(
-    symbol_or_symbols=["GE"],
+    symbol_or_symbols=["JPM"],
     timeframe=TimeFrame.Day,
     start="2019-01-01 00:00:00",
     end="2021-12-30 00:00:00"
@@ -102,6 +102,6 @@ def calculate_bollinger_profit(holdings, closing_data):
 
     #convert the collections dictionary => pandas dataframe => excel sheet
     data_df = pd.DataFrame.from_dict(collection)
-    data_df.to_excel("results.xlsx", index=True)
+    data_df.to_excel("jpm_results.xlsx", index=True)
 
 calculate_bollinger_profit(1000000, close_df)
